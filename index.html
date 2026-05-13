@@ -18,21 +18,21 @@
 </head>
 
 <body>
-    <h1>Bikewatching - an interactive visualization of Boston's bike traffic</h1>
+    <div id='top'>
+        <h1>Bikewatching</h1>
+        <p>Visualizing bike trip patterns in Boston</p>
 
-    <header id='timePanel'>
-        Filter by Time:
-        <input id='time-slider' type=range min="-1" max="1440" step="1" value="-1">
-        <label id='time'>
+        <header id='timePanel'>
+            Filter by Time:
+            <input id='time-slider' type=range min="-1" max="1440" step="1" value="-1">
+            <label id='time'>
 
-            <time id='selected-time'></time>
-            <em id='any-time'>(any time)</em>
-        </label>
-        
+                <time id='selected-time'></time>
+                <em id='any-time'>(any time)</em>
+            </label>
+        </header>
+    </div>
 
-
-
-    </header>
 
 
     <div id="map">
@@ -41,6 +41,21 @@
 
     </div>
 
+    <div class="legend">
+        <label>Legend:</label>
+        <div class='innerdiv' style="--departure-ratio: 1">
+
+            <p>More departures</p>
+        </div>
+        <div class='innerdiv' style="--departure-ratio: 0.5">
+
+            <p>Balanced</p>
+        </div>
+        <div class='innerdiv' style="--departure-ratio: 0">
+
+            <p>More arrivals</p>
+        </div>
+    </div>
 
 
 

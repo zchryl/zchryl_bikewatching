@@ -1,25 +1,41 @@
-body {
-    font: 100%/1.5 system-ui, sans-serif;
-    display: flex;
-    flex-flow: column;
-    max-width: 80em;
-    min-height: 100vh;
-    box-sizing: border-box;
-    margin: auto;
-    padding: 1em;
-}
-
 html,
 body {
-    margin: 0;
+    font: 100%/1.5 system-ui, sans-serif;
+    margin: auto;
     padding: 5;
+
+    max-width: 80em;
+    min-height: 100vh;
+    margin-top: 1%;
+
+
     height: 100%;
     width: 100%;
+
+    padding: 1em;
+
+
     display: flex;
+    flex-flow: column;
     justify-content: center;
+    box-sizing: border-box;
     /* Center horizontally */
     align-items: center;
     /* Center vertically */
+}
+
+#top {
+    display: flex;
+    flex-direction: row;
+    /* Places items side-by-side */
+    justify-content: space-between;
+    /* Pushes title to left, slider to right */
+    align-items: center;
+    /* Centers them vertically against each other */
+    width: 100%;
+    /* Spans full width of the body's max-width */
+    gap: 20px;
+    /* Spacing between text and slider */
 }
 
 #map {
@@ -46,20 +62,78 @@ body {
 
 circle {
     pointer-events: auto;
+
 }
 
 svg circle {
-    fill: steelblue;
     fill-opacity: 0.5;
     stroke: white;
+
+
+
+
 }
+
+#map circle,
+.legend>div {
+    --color-departures: steelblue;
+    --color-arrivals: darkorange;
+    --color: color-mix(in oklch,
+            var(--color-departures) calc(100% * var(--departure-ratio)),
+            var(--color-arrivals));
+    fill: var(--color);
+
+}
+
+.legend {
+
+    display: inline-flex;
+    font-size: min(1.5vw, 15px);
+    margin-block: 1em;
+    width: auto;
+    column-gap: 2em;
+    align-items: center;
+
+}
+
+.legend .innerdiv {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 9px;
+    /* Ensures a guaranteed space between swatch and text */
+    white-space: nowrap;
+    /* Prevents text from breaking into awkward lines */
+}
+
+.legend .innerdiv p {
+    display: inline-flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.legend .innerdiv p::before {
+    content: "";
+    /* Required to make the pseudo-element render */
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: var(--color);
+    border-radius: 50%;
+    margin-right: 9px;
+    /* Guarantees space between swatch and text */
+    flex-shrink: 0;
+    /* Prevents the swatch from squishing */
+}
+
+
 
 #timePanel {
     margin-left: auto;
     display: block;
     gap: 1em;
     align-items: baseline;
-    width:30%;
+    width: 30%;
 }
 
 #time-slider {
